@@ -1,4 +1,4 @@
-#Kata's
+# Kata's
 
 ## Description
 A project containing Kata`s for practicing TDD using Kotlin. Each kata has its own package, and each exercise goals are described below.
