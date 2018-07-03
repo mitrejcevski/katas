@@ -45,3 +45,12 @@ A project containing Kata`s for practicing TDD using Kotlin. Each kata has its o
 7. Should return greeting when coma separated names provided as input:  
  input ```"name1", "name2, name3"```  
  output ```Hello, name1, name2, and name3.```
+ 
+ #### 4. FizzBuzz
+ ##### package name `fizzbuzz`
+1. Should print numbers from 1 to 100
+2. For the multiples of 3 print `Fizz` instead of the number
+3. For the multiples of 5 print `Buzz` instead of the number
+4. For the multiples of both 3 and 5 print `FizzBuzz` instead of the number
+5. A number is `Fizz` if it is dividable by 3 or if it contains 3 inside
+6. A number is `Buzz` if it is dividable by 5 or if it contains 5 inside
