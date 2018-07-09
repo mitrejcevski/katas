@@ -55,7 +55,7 @@ A project containing Kata`s for practicing TDD using Kotlin. Each kata has its o
 5. A number is `Fizz` if it is dividable by 3 or if it contains 3 inside
 6. A number is `Buzz` if it is dividable by 5 or if it contains 5 inside
 
-#### 4. Roman to decimal numbers
+#### 5. Roman to decimal numbers
 ##### package name `roman`
 Converter to resolve input from Roman numerals into decimal. The values of the roman numerals are shown in the following table.
 
