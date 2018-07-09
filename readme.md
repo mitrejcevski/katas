@@ -46,11 +46,34 @@ A project containing Kata`s for practicing TDD using Kotlin. Each kata has its o
  input ```"name1", "name2, name3"```  
  output ```Hello, name1, name2, and name3.```
  
- #### 4. FizzBuzz
- ##### package name `fizzbuzz`
+#### 4. FizzBuzz
+##### package name `fizzbuzz`
 1. Should print numbers from 1 to 100
 2. For the multiples of 3 print `Fizz` instead of the number
 3. For the multiples of 5 print `Buzz` instead of the number
 4. For the multiples of both 3 and 5 print `FizzBuzz` instead of the number
 5. A number is `Fizz` if it is dividable by 3 or if it contains 3 inside
 6. A number is `Buzz` if it is dividable by 5 or if it contains 5 inside
+
+#### 4. Roman to decimal numbers
+##### package name `roman`
+Converter to resolve input from Roman numerals into decimal. The values of the roman numerals are shown in the following table.
+
+| Symbol | Value |
+|:------:|:-----:|
+| I      | 1     |
+| V      | 5     |
+| X      | 10    |
+| L      | 50    |
+| C      | 100   |
+| D      | 500   |
+| M      | 100   |  
+
+Numbers are formed by combining symbols together and adding the values. Generally, symbols are placed in order of value, starting with the largest values. When smaller values precede larger values, the smaller values are subtracted from the larger values, and the result is added to the total:
+
+| Roman Number | Computation                               | Value | Comment                  |
+|:------------:|:-----------------------------------------:|:-----:|:-------:                 |
+|IV            | 5 - 1                                     | 4     | only subtraction         |
+|VI            | 5 + 1                                     | 6     | only addition            |
+|MMVI          | 1000 + 1000 + 5 + 1                       | 2006  | only addition            |
+|MCMXLIV       | 1000 + (1000 - 100) + (50 - 10) + (5 - 1) | 1944  | addition and subtraction |
