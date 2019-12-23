@@ -109,3 +109,20 @@ Constraints:
  2. You are not allowed to add any other public methods in this class
  3. Use Strings and Integers for dates and amounts (keep it simple)
  4. Don't worry about the spacing in the statement printed in the console
+
+#### 6. Point of sale Kata
+##### package name `sales`
+Simple app for scanning bar codes to sell products
+
+##### Stage 1 - Sell one item
+Scanning a barcode should display its price
+
+    - Barcode '12345' should display price '$7.25'
+    - Barcode '23456' should display price '$12.50'
+    - Barcode '99999' should display 'Error: barcode not found'
+    - Empty barcode should display 'Error: empty barcode'
+
+##### Stage 2 - Sell multiple items
+
+    - Introduce a concept of scanning multiple items
+    - Introduce a concept of `total` command that would display the sum of the scanned products
