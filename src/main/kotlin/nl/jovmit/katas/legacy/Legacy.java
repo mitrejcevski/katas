@@ -16,8 +16,6 @@ class Legacy {
     public void validateAndUpdateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
         if (userContext.isFeatureEnabled() && !configuredActionCardsInOrder.isEmpty()) {
             updateDefaultCard(userContext, configuredActionCardsInOrder);
-        } else {
-            return;
         }
     }
 
