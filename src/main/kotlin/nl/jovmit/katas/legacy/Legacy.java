@@ -14,10 +14,7 @@ class Legacy {
     private ActionsDefaultCardRepository actionsDefaultCardRepository;
 
     public void validateAndUpdateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
-        if (!userContext.isFeatureEnabled()) {
-            return;
-        }
-        if (configuredActionCardsInOrder.isEmpty()) {
+        if (!userContext.isFeatureEnabled() || configuredActionCardsInOrder.isEmpty()) {
             return;
         }
         updateDefaultCard(userContext, configuredActionCardsInOrder);
