@@ -14,7 +14,7 @@ class Legacy {
     private ActionsDefaultCardRepository actionsDefaultCardRepository;
 
     public void validateAndUpdateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
-        if (!isFeatureEnabled(userContext)) {
+        if (!userContext.isFeatureEnabled()) {
             return;
         }
         final UUID userId = userContext.getUserId();
@@ -53,7 +53,4 @@ class Legacy {
         throw new UnsupportedOperationException("Not Implemented");
     }
 
-    private boolean isFeatureEnabled(UserContext userContext) {
-        throw new UnsupportedOperationException("Not Implemented");
-    }
 }

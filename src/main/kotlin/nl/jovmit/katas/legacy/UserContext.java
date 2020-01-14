@@ -6,4 +6,8 @@ class UserContext {
     public UUID getUserId() {
         throw new UnsupportedOperationException("Not Implemented");
     }
+
+    boolean isFeatureEnabled() {
+        throw new UnsupportedOperationException("Not Implemented");
+    }
 }
