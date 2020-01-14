@@ -1,8 +1,5 @@
 package nl.jovmit.katas.legacy;
 
-import sun.awt.HKSCS;
-
-import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -58,49 +55,5 @@ class Legacy {
 
     private boolean isFeatureEnabled(UserContext userContext) {
         throw new UnsupportedOperationException("Not Implemented");
-    }
-
-    private static class UserContext {
-        public UUID getUserId() {
-            throw new UnsupportedOperationException("Not Implemented");
-        }
-    }
-
-    private static class CardType {
-        public String name() {
-            throw new UnsupportedOperationException("Not Implemented");
-        }
-    }
-
-    private static class ActionsWeeklyReportDefaultCard {
-        public ActionsWeeklyReportDefaultCard(UUID userId, String name, int initialCount) {
-            throw new UnsupportedOperationException("Not Implemented");
-        }
-
-        public int getNoTimesShown() {
-            throw new UnsupportedOperationException("Not Implemented");
-        }
-
-        public CardType getCardType() {
-            throw new UnsupportedOperationException("Not Implemented");
-        }
-    }
-
-    private static class ActionsDefaultCardRepository {
-        public void deleteIfExists(UUID userId) {
-            throw new UnsupportedOperationException("Not Implemented");
-        }
-
-        public ActionsWeeklyReportDefaultCard find(UUID userId, String name) {
-            throw new UnsupportedOperationException("Not Implemented");
-        }
-
-        public void save(ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard) {
-            throw new UnsupportedOperationException("Not Implemented");
-        }
-
-        public void delete(UUID userId, CardType cardType) {
-            throw new UnsupportedOperationException("Not Implemented");
-        }
     }
 }
