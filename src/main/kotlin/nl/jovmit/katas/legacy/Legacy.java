@@ -17,10 +17,14 @@ class Legacy {
         if (!userContext.isFeatureEnabled()) {
             return;
         }
-        final UUID userId = userContext.getUserId();
         if (configuredActionCardsInOrder.isEmpty()) {
             return;
         }
+        updateDefaultCard(userContext, configuredActionCardsInOrder);
+    }
+
+    private void updateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
+        final UUID userId = userContext.getUserId();
         //check if top prio card is one of the 2 default cards, if no then delete any entry in the table because it has to be 2 times in a row (reset)
         CardType defaultCardConfigured;
         if (ACTIONS_WEEKLY_REPORT_DEFAULT_CARDS.contains(configuredActionCardsInOrder.get(TOP_PRIO_INDEX).name())) {
