@@ -14,10 +14,11 @@ class Legacy {
     private ActionsDefaultCardRepository actionsDefaultCardRepository;
 
     public void validateAndUpdateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
-        if (!userContext.isFeatureEnabled() || configuredActionCardsInOrder.isEmpty()) {
+        if (userContext.isFeatureEnabled() && !configuredActionCardsInOrder.isEmpty()) {
+            updateDefaultCard(userContext, configuredActionCardsInOrder);
+        } else {
             return;
         }
-        updateDefaultCard(userContext, configuredActionCardsInOrder);
     }
 
     private void updateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
