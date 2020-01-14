@@ -18,7 +18,7 @@ class Legacy {
             return;
         }
         final UUID userId = userContext.getUserId();
-        if (isEmpty(configuredActionCardsInOrder)) {
+        if (configuredActionCardsInOrder.isEmpty()) {
             return;
         }
         //check if top prio card is one of the 2 default cards, if no then delete any entry in the table because it has to be 2 times in a row (reset)
@@ -48,9 +48,4 @@ class Legacy {
             validateAndUpdateDefaultCard(userContext, configuredActionCardsInOrder);
         }
     }
-
-    private boolean isEmpty(List<CardType> configuredActionCardsInOrder) {
-        throw new UnsupportedOperationException("Not Implemented");
-    }
-
 }
