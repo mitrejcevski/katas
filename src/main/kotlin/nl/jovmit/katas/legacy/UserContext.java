@@ -5,9 +5,10 @@ import java.util.UUID;
 class UserContext {
 
     private boolean isFeatureEnabled;
+    private UUID userId;
 
     public UUID getUserId() {
-        throw new UnsupportedOperationException("Not Implemented");
+        return userId;
     }
 
     boolean isFeatureEnabled() {
@@ -16,5 +17,9 @@ class UserContext {
 
     public void setFeatureEnabled(boolean isFeatureEnabled) {
         this.isFeatureEnabled = isFeatureEnabled;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 }

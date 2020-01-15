@@ -18,6 +18,7 @@ public class LegacyShould {
     @Test
     public void delete_by_user_id_when_weekly_cards_collection_does_not_contain_top_priority_card() {
         UserContext userContext = UserContextBuilder.aUserContext()
+                .withUserId(USER_ID)
                 .withFeatureEnabled()
                 .build();
         CardType card1 = new CardType();
