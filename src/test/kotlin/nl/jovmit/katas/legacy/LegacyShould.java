@@ -27,7 +27,8 @@ public class LegacyShould {
         CardType card2 = new CardType(SECOND_CARD_NAME);
         List<CardType> configuredCardsInOrder = Arrays.asList(card1, card2);
 
-        new Legacy().validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+        Legacy legacy = new Legacy(repository);
+        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertNull(repository.find(USER_ID, CARD_NAME));
     }
