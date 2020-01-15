@@ -2,7 +2,7 @@ package nl.jovmit.katas.legacy;
 
 import org.junit.Test;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,7 +20,9 @@ public class LegacyShould {
         UserContext userContext = UserContextBuilder.aUserContext()
                 .withFeatureEnabled()
                 .build();
-        List<CardType> configuredCardsInOrder = Collections.emptyList();
+        CardType card1 = new CardType();
+        CardType card2 = new CardType();
+        List<CardType> configuredCardsInOrder = Arrays.asList(card1, card2);
 
         new Legacy().validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
