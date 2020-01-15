@@ -12,6 +12,8 @@ public class LegacyShould {
 
     private static final UUID USER_ID = UUID.randomUUID();
     private static final String CARD_NAME = "::irrelevant card name::";
+    private static final String FIRST_CARD_NAME = "::card 1::";
+    private static final String SECOND_CARD_NAME = "::card 2::";
 
     private ActionsDefaultCardRepository repository = new ActionsDefaultCardRepository();
 
@@ -21,8 +23,8 @@ public class LegacyShould {
                 .withUserId(USER_ID)
                 .withFeatureEnabled()
                 .build();
-        CardType card1 = new CardType();
-        CardType card2 = new CardType();
+        CardType card1 = new CardType(FIRST_CARD_NAME);
+        CardType card2 = new CardType(SECOND_CARD_NAME);
         List<CardType> configuredCardsInOrder = Arrays.asList(card1, card2);
 
         new Legacy().validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
