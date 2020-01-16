@@ -1,5 +1,6 @@
 package nl.jovmit.katas.legacy;
 
+import java.util.Objects;
 import java.util.UUID;
 
 class ActionsWeeklyReportDefaultCard {
@@ -28,5 +29,20 @@ class ActionsWeeklyReportDefaultCard {
 
     public CardType getCardType() {
         return new CardType(name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ActionsWeeklyReportDefaultCard that = (ActionsWeeklyReportDefaultCard) o;
+        return initialCount == that.initialCount &&
+                Objects.equals(userId, that.userId) &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, name, initialCount);
     }
 }
