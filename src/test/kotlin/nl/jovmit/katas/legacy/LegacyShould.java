@@ -15,7 +15,7 @@ public class LegacyShould {
     private static final String FIRST_CARD_NAME = "::card 1::";
     private static final String SECOND_CARD_NAME = "::card 2::";
 
-    private ActionsDefaultCardRepository repository = new ActionsDefaultCardRepository();
+    private ActionsDefaultCardRepository repository = new InMemoryDefaultCardRepository();
 
     @Test
     public void delete_by_user_id_when_weekly_cards_collection_does_not_contain_top_priority_card() {
