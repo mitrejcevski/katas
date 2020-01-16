@@ -14,6 +14,7 @@ public class InMemoryDefaultCardRepositoryShould {
 
     private static final UUID USER_ID = UUID.randomUUID();
     private static final String CARD_NAME = "::irrelevant card name::";
+    private static final String ANOTHER_CARD_NAME = "::another irrelevant card name::";
 
     private ActionsDefaultCardRepository repository;
 
@@ -40,7 +41,12 @@ public class InMemoryDefaultCardRepositoryShould {
                 .withUserId(USER_ID)
                 .withCardName(CARD_NAME)
                 .build();
+        ActionsWeeklyReportDefaultCard anotherCardToSave = aWeeklyCard()
+                .withUserId(USER_ID)
+                .withCardName(ANOTHER_CARD_NAME)
+                .build();
         repository.save(cardToSave);
+        repository.save(anotherCardToSave);
 
         repository.deleteIfExists(USER_ID);
 
