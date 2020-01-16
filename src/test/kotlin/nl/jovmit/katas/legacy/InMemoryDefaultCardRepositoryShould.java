@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.UUID;
 
+import static nl.jovmit.katas.legacy.ActionsWeeklyReportDefaultCardBuilder.aWeeklyCard;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -23,8 +24,10 @@ public class InMemoryDefaultCardRepositoryShould {
 
     @Test
     public void save_new_card() {
-        ActionsWeeklyReportDefaultCard cardToSave =
-                new ActionsWeeklyReportDefaultCard(USER_ID, CARD_NAME, 0);
+        ActionsWeeklyReportDefaultCard cardToSave = aWeeklyCard()
+                .withUserId(USER_ID)
+                .withCardName(CARD_NAME)
+                .build();
 
         repository.save(cardToSave);
 
@@ -33,8 +36,10 @@ public class InMemoryDefaultCardRepositoryShould {
 
     @Test
     public void delete_cards_by_user_id() {
-        ActionsWeeklyReportDefaultCard cardToSave =
-                new ActionsWeeklyReportDefaultCard(USER_ID, CARD_NAME, 0);
+        ActionsWeeklyReportDefaultCard cardToSave = aWeeklyCard()
+                .withUserId(USER_ID)
+                .withCardName(CARD_NAME)
+                .build();
         repository.save(cardToSave);
 
         repository.deleteIfExists(USER_ID);
