@@ -3,6 +3,7 @@ package nl.jovmit.katas.legacy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 class InMemoryDefaultCardRepository extends ActionsDefaultCardRepository {
 
@@ -10,7 +11,10 @@ class InMemoryDefaultCardRepository extends ActionsDefaultCardRepository {
 
     @Override
     public void deleteIfExists(UUID userId) {
-        super.deleteIfExists(userId);
+        List<ActionsWeeklyReportDefaultCard> matchingItems = cards.stream()
+                .filter(it -> it.getUserId().equals(userId))
+                .collect(Collectors.toList());
+        cards.removeAll(matchingItems);
     }
 
     @Override
