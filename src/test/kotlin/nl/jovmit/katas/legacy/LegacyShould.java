@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static nl.jovmit.katas.legacy.ActionsWeeklyReportDefaultCardBuilder.aWeeklyCard;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -46,6 +47,20 @@ public class LegacyShould {
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(weeklyCard, repository.find(USER_ID, FIRST_CARD_NAME));
+    }
+
+    @Test
+    public void delete_previously_added_cards_from_repository() {
+        ActionsWeeklyReportDefaultCard cardToSave = aWeeklyCard()
+                .withUserId(USER_ID)
+                .withCardName(CARD_NAME)
+                .build();
+        repository.save(cardToSave);
+
+        Legacy legacy = new TestableLegacy(repository);
+        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+
+        assertNull(repository.find(USER_ID, CARD_NAME));
     }
 
     private static class TestableLegacy extends Legacy {
