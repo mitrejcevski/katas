@@ -33,6 +33,10 @@ class InMemoryDefaultCardRepository extends ActionsDefaultCardRepository {
 
     @Override
     public void delete(UUID userId, CardType cardType) {
-        super.delete(userId, cardType);
+        List<ActionsWeeklyReportDefaultCard> matchingItems = cards.stream()
+                .filter(it -> it.getUserId().equals(userId) &&
+                        it.getCardType().equals(cardType))
+                .collect(Collectors.toList());
+        cards.removeAll(matchingItems);
     }
 }

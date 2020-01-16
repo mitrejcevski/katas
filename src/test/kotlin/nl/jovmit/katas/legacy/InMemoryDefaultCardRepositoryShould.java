@@ -52,4 +52,18 @@ public class InMemoryDefaultCardRepositoryShould {
 
         assertNull(repository.find(USER_ID, CARD_NAME));
     }
+
+    @Test
+    public void delete_cards_by_user_id_and_card_type() {
+        CardType cardType = new CardType(CARD_NAME);
+        ActionsWeeklyReportDefaultCard cardToSave = aWeeklyCard()
+                .withUserId(USER_ID)
+                .withCardName(CARD_NAME)
+                .build();
+        repository.save(cardToSave);
+
+        repository.delete(USER_ID, cardType);
+
+        assertNull(repository.find(USER_ID, CARD_NAME));
+    }
 }
