@@ -27,6 +27,6 @@ class ActionsWeeklyReportDefaultCard {
     }
 
     public CardType getCardType() {
-        throw new UnsupportedOperationException("Not Implemented");
+        return new CardType(name);
     }
 }
