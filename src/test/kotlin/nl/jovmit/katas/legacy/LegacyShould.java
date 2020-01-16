@@ -50,9 +50,21 @@ public class LegacyShould {
         CardType card2 = new CardType(SECOND_CARD_NAME);
         List<CardType> configuredCardsInOrder = Arrays.asList(card1, card2);
 
-        Legacy legacy = new Legacy(repository);
+        Legacy legacy = new TestableLegacy(repository);
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(weeklyCard, repository.find(USER_ID, FIRST_CARD_NAME));
+    }
+
+    private static class TestableLegacy extends Legacy {
+
+        public TestableLegacy(ActionsDefaultCardRepository repository) {
+            super(repository);
+        }
+
+        @Override
+        protected List<String> getActionsWeeklyReportDefaultCards() {
+            return Arrays.asList(FIRST_CARD_NAME, SECOND_CARD_NAME);
+        }
     }
 }
