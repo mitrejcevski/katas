@@ -50,12 +50,12 @@ public class LegacyShould {
     }
 
     @Test
-    public void delete_previously_added_cards_from_repository() {
-        ActionsWeeklyReportDefaultCard cardToSave = aWeeklyCard()
+    public void remove_old_weekly_reported_default_card() {
+        ActionsWeeklyReportDefaultCard oldWeeklyCard = aWeeklyCard()
                 .withUserId(USER_ID)
                 .withCardName(CARD_NAME)
                 .build();
-        repository.save(cardToSave);
+        repository.save(oldWeeklyCard);
 
         Legacy legacy = new TestableLegacy(repository);
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
