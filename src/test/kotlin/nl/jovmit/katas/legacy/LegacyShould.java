@@ -138,17 +138,9 @@ public class LegacyShould {
 
     private static class TestableLegacy extends Legacy {
 
-        private final List<String> weeklyDefaultCards;
-
         public TestableLegacy(ActionsDefaultCardRepository repository,
                               List<String> weeklyDefaultCards) {
             super(repository, weeklyDefaultCards);
-            this.weeklyDefaultCards = weeklyDefaultCards;
-        }
-
-        @Override
-        protected List<String> getActionsWeeklyReportDefaultCards() {
-            return weeklyDefaultCards;
         }
     }
 }
