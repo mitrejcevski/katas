@@ -98,6 +98,23 @@ public class LegacyShould {
         assertNull(repository.find(USER_ID, FIRST_CARD_NAME));
     }
 
+    @Test
+    public void remove_top_priority_record_from_configured_cards_in_order() {
+        int sameAsDefault = 0;
+        ActionsWeeklyReportDefaultCard weeklyCard = aWeeklyCard()
+                .withUserId(USER_ID)
+                .withCardName(FIRST_CARD_NAME)
+                .withTimesNotShown(sameAsDefault)
+                .build();
+        repository.save(weeklyCard);
+
+        Legacy legacy = new TestableLegacy(repository);
+        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+
+        assertEquals(1, configuredCardsInOrder.size());
+        assertEquals(SECOND_CARD_NAME, configuredCardsInOrder.get(0).name());
+    }
+
     private static class TestableLegacy extends Legacy {
 
         public TestableLegacy(ActionsDefaultCardRepository repository) {
