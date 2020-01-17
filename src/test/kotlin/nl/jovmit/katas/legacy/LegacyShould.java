@@ -2,6 +2,7 @@ package nl.jovmit.katas.legacy;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +24,10 @@ public class LegacyShould {
             .build();
     private CardType card1 = new CardType(FIRST_CARD_NAME);
     private CardType card2 = new CardType(SECOND_CARD_NAME);
-    private List<CardType> configuredCardsInOrder = Arrays.asList(card1, card2);
+    private List<CardType> configuredCardsInOrder = new ArrayList<CardType>() {{
+        add(card1);
+        add(card2);
+    }};
 
     private ActionsDefaultCardRepository repository = new InMemoryDefaultCardRepository();
 
@@ -76,6 +80,22 @@ public class LegacyShould {
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(weeklyCard, repository.find(USER_ID, FIRST_CARD_NAME));
+    }
+
+    @Test
+    public void delete_weekly_default_card_when_times_not_shown_is_same_as_default() {
+        int sameAsDefault = 0;
+        ActionsWeeklyReportDefaultCard weeklyCard = aWeeklyCard()
+                .withUserId(USER_ID)
+                .withCardName(FIRST_CARD_NAME)
+                .withTimesNotShown(sameAsDefault)
+                .build();
+        repository.save(weeklyCard);
+
+        Legacy legacy = new TestableLegacy(repository);
+        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+
+        assertNull(repository.find(USER_ID, FIRST_CARD_NAME));
     }
 
     private static class TestableLegacy extends Legacy {
