@@ -8,6 +8,7 @@ class ActionsWeeklyReportDefaultCard {
     private final UUID userId;
     private final String name;
     private final int initialCount;
+    private int timesNotShown;
 
     public ActionsWeeklyReportDefaultCard(UUID userId, String name, int initialCount) {
         this.userId = userId;
@@ -24,7 +25,11 @@ class ActionsWeeklyReportDefaultCard {
     }
 
     public int getNoTimesShown() {
-        throw new UnsupportedOperationException("Not Implemented");
+        return timesNotShown;
+    }
+
+    public void setTimesNotShown(int timesNotShown) {
+        this.timesNotShown = timesNotShown;
     }
 
     public CardType getCardType() {
@@ -38,11 +43,12 @@ class ActionsWeeklyReportDefaultCard {
         ActionsWeeklyReportDefaultCard that = (ActionsWeeklyReportDefaultCard) o;
         return initialCount == that.initialCount &&
                 Objects.equals(userId, that.userId) &&
-                Objects.equals(name, that.name);
+                Objects.equals(name, that.name) &&
+                Objects.equals(timesNotShown, that.timesNotShown);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, name, initialCount);
+        return Objects.hash(userId, name, initialCount, timesNotShown);
     }
 }

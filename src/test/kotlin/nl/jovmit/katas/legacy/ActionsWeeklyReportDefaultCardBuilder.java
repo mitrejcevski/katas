@@ -6,6 +6,7 @@ class ActionsWeeklyReportDefaultCardBuilder {
 
     private UUID userId;
     private String cardName;
+    private int timesNotShown;
 
     public static ActionsWeeklyReportDefaultCardBuilder aWeeklyCard() {
         return new ActionsWeeklyReportDefaultCardBuilder();
@@ -21,7 +22,16 @@ class ActionsWeeklyReportDefaultCardBuilder {
         return this;
     }
 
+    public ActionsWeeklyReportDefaultCardBuilder withTimesNotShown(
+            int timesNotShown) {
+        this.timesNotShown = timesNotShown;
+        return this;
+    }
+
     public ActionsWeeklyReportDefaultCard build() {
-        return new ActionsWeeklyReportDefaultCard(userId, cardName, 0);
+        ActionsWeeklyReportDefaultCard card =
+                new ActionsWeeklyReportDefaultCard(userId, cardName, 0);
+        card.setTimesNotShown(timesNotShown);
+        return card;
     }
 }
