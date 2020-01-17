@@ -1,5 +1,6 @@
 package nl.jovmit.katas.legacy;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -30,10 +31,17 @@ public class LegacyShould {
     }};
 
     private ActionsDefaultCardRepository repository = new InMemoryDefaultCardRepository();
+    private Legacy legacy;
+
+    @Before
+    public void setUp() {
+        legacy = new TestableLegacy(repository);
+    }
 
     @Test
     public void delete_by_user_id_when_weekly_cards_collection_does_not_contain_top_priority_card() {
         Legacy legacy = new Legacy(repository);
+
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertNull(repository.find(USER_ID, CARD_NAME));
@@ -46,7 +54,6 @@ public class LegacyShould {
                 .withUserId(USER_ID)
                 .build();
 
-        Legacy legacy = new TestableLegacy(repository);
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(weeklyCard, repository.find(USER_ID, FIRST_CARD_NAME));
@@ -60,7 +67,6 @@ public class LegacyShould {
                 .build();
         repository.save(oldWeeklyCard);
 
-        Legacy legacy = new TestableLegacy(repository);
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertNull(repository.find(USER_ID, CARD_NAME));
@@ -76,7 +82,6 @@ public class LegacyShould {
                 .build();
         repository.save(weeklyCard);
 
-        Legacy legacy = new TestableLegacy(repository);
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(weeklyCard, repository.find(USER_ID, FIRST_CARD_NAME));
@@ -92,7 +97,6 @@ public class LegacyShould {
                 .build();
         repository.save(weeklyCard);
 
-        Legacy legacy = new TestableLegacy(repository);
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertNull(repository.find(USER_ID, FIRST_CARD_NAME));
@@ -108,11 +112,28 @@ public class LegacyShould {
                 .build();
         repository.save(weeklyCard);
 
-        Legacy legacy = new TestableLegacy(repository);
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(1, configuredCardsInOrder.size());
         assertEquals(SECOND_CARD_NAME, configuredCardsInOrder.get(0).name());
+    }
+
+    @Test
+    public void promote_new_card() {
+        ActionsWeeklyReportDefaultCard currentWeeklyCard = aWeeklyCard()
+                .withUserId(USER_ID)
+                .withCardName(FIRST_CARD_NAME)
+                .build();
+        repository.save(currentWeeklyCard);
+
+        ActionsWeeklyReportDefaultCard newWeeklyCard = aWeeklyCard()
+                .withUserId(USER_ID)
+                .withCardName(SECOND_CARD_NAME)
+                .build();
+
+        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+
+        assertEquals(newWeeklyCard, repository.find(USER_ID, SECOND_CARD_NAME));
     }
 
     private static class TestableLegacy extends Legacy {
