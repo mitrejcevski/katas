@@ -35,7 +35,8 @@ public class LegacyShould {
 
     @Before
     public void setUp() {
-        legacy = new TestableLegacy(repository, Arrays.asList(FIRST_CARD_NAME, SECOND_CARD_NAME));
+        List<String> weeklyDefaultCards = Arrays.asList(FIRST_CARD_NAME, SECOND_CARD_NAME);
+        legacy = new Legacy(repository, weeklyDefaultCards);
     }
 
     @Test
@@ -134,13 +135,5 @@ public class LegacyShould {
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(newWeeklyCard, repository.find(USER_ID, SECOND_CARD_NAME));
-    }
-
-    private static class TestableLegacy extends Legacy {
-
-        public TestableLegacy(ActionsDefaultCardRepository repository,
-                              List<String> weeklyDefaultCards) {
-            super(repository, weeklyDefaultCards);
-        }
     }
 }
