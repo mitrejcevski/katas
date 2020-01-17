@@ -11,10 +11,17 @@ class Legacy {
     private static final int INITIAL_COUNT = 0;
     private static final int MAX_NO_TIMES_TO_SHOW = 0;
 
-    private ActionsDefaultCardRepository actionsDefaultCardRepository;
+    private final ActionsDefaultCardRepository actionsDefaultCardRepository;
+    private final List<String> weeklyDefaultCards;
 
     public Legacy(ActionsDefaultCardRepository repository) {
+        this(repository, ACTIONS_WEEKLY_REPORT_DEFAULT_CARDS);
+    }
+
+    public Legacy(ActionsDefaultCardRepository repository,
+                  List<String> weeklyDefaultCards) {
         this.actionsDefaultCardRepository = repository;
+        this.weeklyDefaultCards = weeklyDefaultCards;
     }
 
     public void validateAndUpdateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
@@ -54,6 +61,6 @@ class Legacy {
     }
 
     protected List<String> getActionsWeeklyReportDefaultCards() {
-        return ACTIONS_WEEKLY_REPORT_DEFAULT_CARDS;
+        return weeklyDefaultCards;
     }
 }

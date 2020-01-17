@@ -35,7 +35,7 @@ public class LegacyShould {
 
     @Before
     public void setUp() {
-        legacy = new TestableLegacy(repository);
+        legacy = new TestableLegacy(repository, Arrays.asList(FIRST_CARD_NAME, SECOND_CARD_NAME));
     }
 
     @Test
@@ -138,13 +138,17 @@ public class LegacyShould {
 
     private static class TestableLegacy extends Legacy {
 
-        public TestableLegacy(ActionsDefaultCardRepository repository) {
-            super(repository);
+        private final List<String> weeklyDefaultCards;
+
+        public TestableLegacy(ActionsDefaultCardRepository repository,
+                              List<String> weeklyDefaultCards) {
+            super(repository, weeklyDefaultCards);
+            this.weeklyDefaultCards = weeklyDefaultCards;
         }
 
         @Override
         protected List<String> getActionsWeeklyReportDefaultCards() {
-            return Arrays.asList(FIRST_CARD_NAME, SECOND_CARD_NAME);
+            return weeklyDefaultCards;
         }
     }
 }
