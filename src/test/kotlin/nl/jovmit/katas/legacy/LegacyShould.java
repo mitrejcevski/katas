@@ -41,6 +41,8 @@ public class LegacyShould {
 
     @Test
     public void delete_by_user_id_when_weekly_cards_collection_does_not_contain_top_priority_card() {
+        Legacy legacy = new Legacy(repository);
+
         legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertNull(repository.find(USER_ID, CARD_NAME));
