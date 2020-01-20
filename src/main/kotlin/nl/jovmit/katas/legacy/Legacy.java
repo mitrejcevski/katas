@@ -25,9 +25,13 @@ class Legacy {
     }
 
     public void validateAndUpdateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
-        if (userContext.isFeatureEnabled() && !configuredActionCardsInOrder.isEmpty()) {
+        if (validate(userContext, configuredActionCardsInOrder)) {
             updateDefaultCard(userContext, configuredActionCardsInOrder);
         }
+    }
+
+    private boolean validate(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
+        return userContext.isFeatureEnabled() && !configuredActionCardsInOrder.isEmpty();
     }
 
     private void updateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
