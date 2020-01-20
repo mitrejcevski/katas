@@ -24,7 +24,7 @@ class Legacy {
         this.weeklyDefaultCards = weeklyDefaultCards;
     }
 
-    public void validateAndUpdateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
+    public void validateThenUpdateDefaultCard(UserContext userContext, List<CardType> configuredActionCardsInOrder) {
         if (validate(userContext, configuredActionCardsInOrder)) {
             updateDefaultCard(userContext, configuredActionCardsInOrder);
         }
@@ -52,7 +52,7 @@ class Legacy {
         } else if (actionsWeeklyReportDefaultCard.getNoTimesShown() == MAX_NO_TIMES_TO_SHOW) {
             actionsDefaultCardRepository.delete(userId, actionsWeeklyReportDefaultCard.getCardType());
             configuredActionCardsInOrder.remove(TOP_PRIORITY_INDEX);
-            validateAndUpdateDefaultCard(userContext, configuredActionCardsInOrder);
+            validateThenUpdateDefaultCard(userContext, configuredActionCardsInOrder);
         }
     }
 

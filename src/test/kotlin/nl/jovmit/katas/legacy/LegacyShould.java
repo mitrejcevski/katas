@@ -43,7 +43,7 @@ public class LegacyShould {
     public void delete_by_user_id_when_weekly_cards_collection_does_not_contain_top_priority_card() {
         Legacy legacy = new Legacy(repository);
 
-        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+        legacy.validateThenUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertNull(repository.find(USER_ID, CARD_NAME));
     }
@@ -55,7 +55,7 @@ public class LegacyShould {
                 .withUserId(USER_ID)
                 .build();
 
-        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+        legacy.validateThenUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(weeklyCard, repository.find(USER_ID, FIRST_CARD_NAME));
     }
@@ -68,7 +68,7 @@ public class LegacyShould {
                 .build();
         repository.save(oldWeeklyCard);
 
-        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+        legacy.validateThenUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertNull(repository.find(USER_ID, CARD_NAME));
     }
@@ -83,7 +83,7 @@ public class LegacyShould {
                 .build();
         repository.save(weeklyCard);
 
-        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+        legacy.validateThenUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(weeklyCard, repository.find(USER_ID, FIRST_CARD_NAME));
     }
@@ -98,7 +98,7 @@ public class LegacyShould {
                 .build();
         repository.save(weeklyCard);
 
-        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+        legacy.validateThenUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertNull(repository.find(USER_ID, FIRST_CARD_NAME));
     }
@@ -113,7 +113,7 @@ public class LegacyShould {
                 .build();
         repository.save(weeklyCard);
 
-        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+        legacy.validateThenUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(1, configuredCardsInOrder.size());
         assertEquals(SECOND_CARD_NAME, configuredCardsInOrder.get(0).name());
@@ -132,7 +132,7 @@ public class LegacyShould {
                 .withCardName(SECOND_CARD_NAME)
                 .build();
 
-        legacy.validateAndUpdateDefaultCard(userContext, configuredCardsInOrder);
+        legacy.validateThenUpdateDefaultCard(userContext, configuredCardsInOrder);
 
         assertEquals(newWeeklyCard, repository.find(USER_ID, SECOND_CARD_NAME));
     }
