@@ -34,11 +34,11 @@ class Legacy {
         final UUID userId = userContext.getUserId();
         //check if top prio card is one of the 2 default cards, if no then delete any entry in the table because it has to be 2 times in a row (reset)
         CardType defaultCardConfigured;
-        if (weeklyDefaultCards.contains(configuredActionCardsInOrder.get(TOP_PRIO_INDEX).name())) {
-            defaultCardConfigured = configuredActionCardsInOrder.get(TOP_PRIO_INDEX);
-        } else {
+        if (!weeklyDefaultCards.contains(configuredActionCardsInOrder.get(TOP_PRIO_INDEX).name())) {
             actionsDefaultCardRepository.deleteIfExists(userId);
             return;
+        } else {
+            defaultCardConfigured = configuredActionCardsInOrder.get(TOP_PRIO_INDEX);
         }
         //check the entry of the default card in the table, if there is no entry create one
         ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard = actionsDefaultCardRepository.find(userId, defaultCardConfigured.name());
