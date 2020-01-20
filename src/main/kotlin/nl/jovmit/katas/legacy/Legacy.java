@@ -41,7 +41,8 @@ class Legacy {
 
     private void promoteNewWeeklyCard(UserContext userContext, List<CardType> configuredActionCardsInOrder, UUID userId) {
         CardType defaultCardConfigured = configuredActionCardsInOrder.get(TOP_PRIO_INDEX);
-        ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard = actionsDefaultCardRepository.find(userId, defaultCardConfigured.name());
+        ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard =
+                actionsDefaultCardRepository.find(userId, defaultCardConfigured.name());
         if (actionsWeeklyReportDefaultCard == null) {
             promoteDefaultCardFor(userId, defaultCardConfigured);
         } else if (actionsWeeklyReportDefaultCard.getNoTimesShown() == MAX_NO_TIMES_TO_SHOW) {
@@ -53,7 +54,8 @@ class Legacy {
 
     private void promoteDefaultCardFor(UUID userId, CardType defaultCardConfigured) {
         actionsDefaultCardRepository.deleteIfExists(userId);
-        ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard = new ActionsWeeklyReportDefaultCard(userId, defaultCardConfigured.name(), INITIAL_COUNT);
+        ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard =
+                new ActionsWeeklyReportDefaultCard(userId, defaultCardConfigured.name(), INITIAL_COUNT);
         actionsDefaultCardRepository.save(actionsWeeklyReportDefaultCard);
     }
 }
