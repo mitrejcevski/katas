@@ -52,9 +52,8 @@ class Legacy {
     }
 
     private void promoteDefaultCardFor(UUID userId, CardType defaultCardConfigured) {
-        ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard;
         actionsDefaultCardRepository.deleteIfExists(userId);
-        actionsWeeklyReportDefaultCard = new ActionsWeeklyReportDefaultCard(userId, defaultCardConfigured.name(), INITIAL_COUNT);
+        ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard = new ActionsWeeklyReportDefaultCard(userId, defaultCardConfigured.name(), INITIAL_COUNT);
         actionsDefaultCardRepository.save(actionsWeeklyReportDefaultCard);
     }
 }
