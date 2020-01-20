@@ -36,7 +36,6 @@ class Legacy {
         CardType defaultCardConfigured;
         if (!weeklyDefaultCards.contains(configuredActionCardsInOrder.get(TOP_PRIO_INDEX).name())) {
             actionsDefaultCardRepository.deleteIfExists(userId);
-            return;
         } else {
             defaultCardConfigured = configuredActionCardsInOrder.get(TOP_PRIO_INDEX);
 
