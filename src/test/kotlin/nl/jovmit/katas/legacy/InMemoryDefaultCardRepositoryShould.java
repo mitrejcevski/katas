@@ -16,8 +16,8 @@ public class InMemoryDefaultCardRepositoryShould {
     private static final String CARD_NAME = "::irrelevant card name::";
     private static final String ANOTHER_CARD_NAME = "::another irrelevant card name::";
 
-    private ActionsDefaultCardRepository repository;
-    private ActionsWeeklyReportDefaultCard cardToSave;
+    private CardsRepository repository;
+    private WeeklyReportedDefaultCard cardToSave;
 
     @Before
     public void initialize() {
@@ -33,7 +33,7 @@ public class InMemoryDefaultCardRepositoryShould {
 
     @Test
     public void delete_cards_by_user_id() {
-        ActionsWeeklyReportDefaultCard anotherCardToSave = aWeeklyCard()
+        WeeklyReportedDefaultCard anotherCardToSave = aWeeklyCard()
                 .withUserId(USER_ID)
                 .withCardName(ANOTHER_CARD_NAME)
                 .build();
@@ -46,9 +46,9 @@ public class InMemoryDefaultCardRepositoryShould {
 
     @Test
     public void delete_cards_by_user_id_and_card_type() {
-        CardType cardType = new CardType(CARD_NAME);
+        Card card = new Card(CARD_NAME);
 
-        repository.delete(USER_ID, cardType);
+        repository.delete(USER_ID, card);
 
         assertNull(repository.find(USER_ID, CARD_NAME));
     }

@@ -2,20 +2,20 @@ package nl.jovmit.katas.legacy;
 
 import java.util.UUID;
 
-class ActionsDefaultCardRepository {
+class CardsRepository {
     public void deleteIfExists(UUID userId) {
         throw new UnsupportedOperationException("Not Implemented");
     }
 
-    public ActionsWeeklyReportDefaultCard find(UUID userId, String name) {
+    public WeeklyReportedDefaultCard find(UUID userId, String name) {
         throw new UnsupportedOperationException("Not Implemented");
     }
 
-    public void save(ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard) {
+    public void save(WeeklyReportedDefaultCard weeklyReportedDefaultCard) {
         throw new UnsupportedOperationException("Not Implemented");
     }
 
-    public void delete(UUID userId, CardType cardType) {
+    public void delete(UUID userId, Card card) {
         throw new UnsupportedOperationException("Not Implemented");
     }
 }

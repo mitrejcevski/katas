@@ -28,9 +28,9 @@ class ActionsWeeklyReportDefaultCardBuilder {
         return this;
     }
 
-    public ActionsWeeklyReportDefaultCard build() {
-        ActionsWeeklyReportDefaultCard card =
-                new ActionsWeeklyReportDefaultCard(userId, cardName, 0);
+    public WeeklyReportedDefaultCard build() {
+        WeeklyReportedDefaultCard card =
+                new WeeklyReportedDefaultCard(userId, cardName, 0);
         card.setTimesNotShown(timesNotShown);
         return card;
     }

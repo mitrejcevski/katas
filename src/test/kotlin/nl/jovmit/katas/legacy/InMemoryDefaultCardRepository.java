@@ -5,20 +5,20 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-class InMemoryDefaultCardRepository extends ActionsDefaultCardRepository {
+class InMemoryDefaultCardRepository extends CardsRepository {
 
-    private List<ActionsWeeklyReportDefaultCard> cards = new ArrayList<>();
+    private List<WeeklyReportedDefaultCard> cards = new ArrayList<>();
 
     @Override
     public void deleteIfExists(UUID userId) {
-        List<ActionsWeeklyReportDefaultCard> matchingItems = cards.stream()
+        List<WeeklyReportedDefaultCard> matchingItems = cards.stream()
                 .filter(it -> it.getUserId().equals(userId))
                 .collect(Collectors.toList());
         cards.removeAll(matchingItems);
     }
 
     @Override
-    public ActionsWeeklyReportDefaultCard find(UUID userId, String name) {
+    public WeeklyReportedDefaultCard find(UUID userId, String name) {
         return cards.stream()
                 .filter(it -> it.getUserId().equals(userId) &&
                         it.getName().equals(name))
@@ -27,15 +27,15 @@ class InMemoryDefaultCardRepository extends ActionsDefaultCardRepository {
     }
 
     @Override
-    public void save(ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard) {
-        cards.add(actionsWeeklyReportDefaultCard);
+    public void save(WeeklyReportedDefaultCard weeklyReportedDefaultCard) {
+        cards.add(weeklyReportedDefaultCard);
     }
 
     @Override
-    public void delete(UUID userId, CardType cardType) {
-        List<ActionsWeeklyReportDefaultCard> matchingItems = cards.stream()
+    public void delete(UUID userId, Card card) {
+        List<WeeklyReportedDefaultCard> matchingItems = cards.stream()
                 .filter(it -> it.getUserId().equals(userId) &&
-                        it.getCardType().equals(cardType))
+                        it.getCardType().equals(card))
                 .collect(Collectors.toList());
         cards.removeAll(matchingItems);
     }

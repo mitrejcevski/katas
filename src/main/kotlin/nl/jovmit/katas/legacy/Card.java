@@ -2,11 +2,11 @@ package nl.jovmit.katas.legacy;
 
 import java.util.Objects;
 
-class CardType {
+class Card {
 
     private final String cardName;
 
-    public CardType(String cardName) {
+    public Card(String cardName) {
         this.cardName = cardName;
     }
 
@@ -18,8 +18,8 @@ class CardType {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CardType cardType = (CardType) o;
-        return Objects.equals(cardName, cardType.cardName);
+        Card card = (Card) o;
+        return Objects.equals(cardName, card.cardName);
     }
 
     @Override

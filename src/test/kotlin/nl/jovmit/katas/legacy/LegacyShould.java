@@ -23,14 +23,14 @@ public class LegacyShould {
             .withUserId(USER_ID)
             .withFeatureEnabled()
             .build();
-    private CardType card1 = new CardType(FIRST_CARD_NAME);
-    private CardType card2 = new CardType(SECOND_CARD_NAME);
-    private List<CardType> configuredCardsInOrder = new ArrayList<CardType>() {{
+    private Card card1 = new Card(FIRST_CARD_NAME);
+    private Card card2 = new Card(SECOND_CARD_NAME);
+    private List<Card> configuredCardsInOrder = new ArrayList<Card>() {{
         add(card1);
         add(card2);
     }};
 
-    private ActionsDefaultCardRepository repository = new InMemoryDefaultCardRepository();
+    private CardsRepository repository = new InMemoryDefaultCardRepository();
     private Legacy legacy;
 
     @Before
@@ -50,7 +50,7 @@ public class LegacyShould {
 
     @Test
     public void save_new_weekly_default_card() {
-        ActionsWeeklyReportDefaultCard weeklyCard = aWeeklyCard()
+        WeeklyReportedDefaultCard weeklyCard = aWeeklyCard()
                 .withCardName(FIRST_CARD_NAME)
                 .withUserId(USER_ID)
                 .build();
@@ -62,7 +62,7 @@ public class LegacyShould {
 
     @Test
     public void remove_old_weekly_reported_default_card() {
-        ActionsWeeklyReportDefaultCard oldWeeklyCard = aWeeklyCard()
+        WeeklyReportedDefaultCard oldWeeklyCard = aWeeklyCard()
                 .withUserId(USER_ID)
                 .withCardName(CARD_NAME)
                 .build();
@@ -76,7 +76,7 @@ public class LegacyShould {
     @Test
     public void do_nothing_when_weekly_default_card_not_shown_times_differs_from_default() {
         int differentThanDefault = 5;
-        ActionsWeeklyReportDefaultCard weeklyCard = aWeeklyCard()
+        WeeklyReportedDefaultCard weeklyCard = aWeeklyCard()
                 .withUserId(USER_ID)
                 .withCardName(FIRST_CARD_NAME)
                 .withTimesNotShown(differentThanDefault)
@@ -91,7 +91,7 @@ public class LegacyShould {
     @Test
     public void delete_weekly_default_card_when_times_not_shown_is_same_as_default() {
         int sameAsDefault = 0;
-        ActionsWeeklyReportDefaultCard weeklyCard = aWeeklyCard()
+        WeeklyReportedDefaultCard weeklyCard = aWeeklyCard()
                 .withUserId(USER_ID)
                 .withCardName(FIRST_CARD_NAME)
                 .withTimesNotShown(sameAsDefault)
@@ -106,7 +106,7 @@ public class LegacyShould {
     @Test
     public void remove_top_priority_record_from_configured_cards_in_order() {
         int sameAsDefault = 0;
-        ActionsWeeklyReportDefaultCard weeklyCard = aWeeklyCard()
+        WeeklyReportedDefaultCard weeklyCard = aWeeklyCard()
                 .withUserId(USER_ID)
                 .withCardName(FIRST_CARD_NAME)
                 .withTimesNotShown(sameAsDefault)
@@ -121,13 +121,13 @@ public class LegacyShould {
 
     @Test
     public void promote_new_card() {
-        ActionsWeeklyReportDefaultCard currentWeeklyCard = aWeeklyCard()
+        WeeklyReportedDefaultCard currentWeeklyCard = aWeeklyCard()
                 .withUserId(USER_ID)
                 .withCardName(FIRST_CARD_NAME)
                 .build();
         repository.save(currentWeeklyCard);
 
-        ActionsWeeklyReportDefaultCard newWeeklyCard = aWeeklyCard()
+        WeeklyReportedDefaultCard newWeeklyCard = aWeeklyCard()
                 .withUserId(USER_ID)
                 .withCardName(SECOND_CARD_NAME)
                 .build();

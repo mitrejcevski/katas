@@ -3,14 +3,14 @@ package nl.jovmit.katas.legacy;
 import java.util.Objects;
 import java.util.UUID;
 
-class ActionsWeeklyReportDefaultCard {
+class WeeklyReportedDefaultCard {
 
     private final UUID userId;
     private final String name;
     private final int initialCount;
     private int timesNotShown;
 
-    public ActionsWeeklyReportDefaultCard(UUID userId, String name, int initialCount) {
+    public WeeklyReportedDefaultCard(UUID userId, String name, int initialCount) {
         this.userId = userId;
         this.name = name;
         this.initialCount = initialCount;
@@ -32,15 +32,15 @@ class ActionsWeeklyReportDefaultCard {
         this.timesNotShown = timesNotShown;
     }
 
-    public CardType getCardType() {
-        return new CardType(name);
+    public Card getCardType() {
+        return new Card(name);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ActionsWeeklyReportDefaultCard that = (ActionsWeeklyReportDefaultCard) o;
+        WeeklyReportedDefaultCard that = (WeeklyReportedDefaultCard) o;
         return initialCount == that.initialCount &&
                 Objects.equals(userId, that.userId) &&
                 Objects.equals(name, that.name) &&
