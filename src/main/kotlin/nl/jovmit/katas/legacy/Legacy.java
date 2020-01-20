@@ -41,9 +41,7 @@ class Legacy {
             //check the entry of the default card in the table, if there is no entry create one
             ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard = actionsDefaultCardRepository.find(userId, defaultCardConfigured.name());
             if (actionsWeeklyReportDefaultCard == null) {
-                actionsDefaultCardRepository.deleteIfExists(userId); //takes care of any other entry if present, so that we only have one entry per user at a time
-                actionsWeeklyReportDefaultCard = new ActionsWeeklyReportDefaultCard(userId, defaultCardConfigured.name(), INITIAL_COUNT);
-                actionsDefaultCardRepository.save(actionsWeeklyReportDefaultCard);
+                promoteDefaultCardFor(userId, defaultCardConfigured);
             } else if (actionsWeeklyReportDefaultCard.getNoTimesShown() == MAX_NO_TIMES_TO_SHOW) {
                 //check the count, if it is 2 delete the current one from db and also remove from the list
                 //and repeat the process, the scenario will not be repeated if the card in question is the MSM general card
@@ -55,5 +53,12 @@ class Legacy {
                 validateAndUpdateDefaultCard(userContext, configuredActionCardsInOrder);
             }
         }
+    }
+
+    private void promoteDefaultCardFor(UUID userId, CardType defaultCardConfigured) {
+        ActionsWeeklyReportDefaultCard actionsWeeklyReportDefaultCard;
+        actionsDefaultCardRepository.deleteIfExists(userId); //takes care of any other entry if present, so that we only have one entry per user at a time
+        actionsWeeklyReportDefaultCard = new ActionsWeeklyReportDefaultCard(userId, defaultCardConfigured.name(), INITIAL_COUNT);
+        actionsDefaultCardRepository.save(actionsWeeklyReportDefaultCard);
     }
 }
