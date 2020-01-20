@@ -45,7 +45,7 @@ A project containing Kata`s for practicing TDD using Kotlin. Each kata has its o
 7. Should return greeting when coma separated names provided as input:  
  input ```"name1", "name2, name3"```  
  output ```Hello, name1, name2, and name3.```
- 
+
 #### 4. FizzBuzz
 ##### package name `fizzbuzz`
 1. Should print numbers from 1 to 100
@@ -126,3 +126,8 @@ Scanning a barcode should display its price
 
     - Introduce a concept of scanning multiple items
     - Introduce a concept of `total` command that would display the sum of the scanned products
+
+#### 7. Refactoring legacy code
+##### package name `legacy`
+Legacy code that has to be improved. We have to make the code better while making sure
+we preserve the same behaviour. The idea is to cover the legacy code with tests to make sure we won't break its functionality, and once we are confident we can start refactoring, use as much as possible automated refactoring and minimise the manual refactoring for extra safety.
